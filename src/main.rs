@@ -21,19 +21,14 @@ fn main() {
             if line.contains(query) {
                 let mut level = line.matches("    ").count();
                 matches.push_front(line);
-                loop {
-                    for _line in lines.clone().drain(i + 1..lines.len()) {        
-                        let _level = _line.matches("    ").count();
-                        if _level == level - 1 {
-                            matches.push_front(_line);
-                            level = _level;
-                            if level == 0 {
-                                break;
-                            }
+                for _line in lines.clone().drain(i + 1..lines.len()) {        
+                    let _level = _line.matches("    ").count();
+                    if _level == level - 1 {
+                        matches.push_front(_line);
+                        level = _level;
+                        if level == 0 {
+                            break;
                         }
-                    }
-                    if level == 0 {
-                        break;
                     }
                 }
             }
